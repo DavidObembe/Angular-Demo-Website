@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { throwError } from 'rxjs';
-import {retry, catchError} from 'rxjs/operators';
-import { Observable } from 'rxjs';
+
+import { Observable, throwError } from 'rxjs';
+import { catchError, retry } from 'rxjs/operators';
+
 
 
 
@@ -29,10 +30,14 @@ export class ApiService {
 
     }
   
+  public sendGetRequest(){
+    return this.httpClient.get<any[]>(this.SERVER_URL).pipe(catchError(this.handleError));
+  }
+  
   
 
-  public get(): Observable<any[]>{
-    // return this.httpClient.get<any[]>(this.SERVER_URL).pipe(catchError());
-    return this.httpClient.get<any[]>(this.SERVER_URL);
-  }
+  // public get(): Observable<any[]>{
+  //   // return this.httpClient.get<any[]>(this.SERVER_URL).pipe(catchError());
+  //   return this.httpClient.get<any[]>(this.SERVER_URL);
+  // }
 }

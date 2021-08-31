@@ -14,10 +14,13 @@ export class HomeComponent implements OnInit {
     this.products = []
   }
 
-  ngOnInit() {
-    this.apiService.get().subscribe((data: any[]) => {
-      console.log(data);
+  
+
+  ngOnInit(){
+    this.apiService.sendGetRequest().subscribe((data) => {
+      console.log(data); 
       this.products = data;
+       
     })
   }
 
